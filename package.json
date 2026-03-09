@@ -1,0 +1,15 @@
+{
+  "name": "uhc-portal-temp",
+  "version": "1.0.0",
+  "engines": {
+    "yarn": ">= 1.22.0"
+  },
+  "scripts": {
+    "prettier:fix": "prettier --write 'src/types/**/*.ts'"
+  },
+  "devDependencies": {
+    "openapi-typescript": "^7.13.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
+  }
+}
