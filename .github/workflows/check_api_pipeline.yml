@@ -20,6 +20,8 @@ env:
 jobs:
   check_api:
     name: Check API
+    # Security Hardening: Explicitly drop all default GITHUB_TOKEN permissions.
+    permissions: {}
     concurrency:
       group: check_api-${{ github.event_name }}-${{ github.head_ref }}
       cancel-in-progress: true
@@ -31,6 +33,10 @@ jobs:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v6
+        with:
+          # Security Hardening: Prevent repository token from being left in .git/config.
+          persist-credentials: false
+          
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v4
         with:
