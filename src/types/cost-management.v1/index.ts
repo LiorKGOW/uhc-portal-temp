@@ -2514,10 +2514,20 @@ export interface components {
       count?: number;
     };
     Source: {
-      /** @example Platform source identifier */
-      id: number;
+      /** @example 1 */
+      id: string;
       /** @example AWS */
       source_type: string;
+      /**
+       * @description CMMO-compatible source type identifier
+       * @example 1
+       */
+      source_type_id?: string;
+      /**
+       * @description Source reference (e.g., cluster ID for OCP sources)
+       * @example my-ocp-cluster
+       */
+      source_ref?: string;
     };
     SourceIn: components["schemas"]["Source"] & {
       /**
@@ -2536,11 +2546,8 @@ export interface components {
       billing_source: Record<string, never>;
     };
     SourceOut: components["schemas"]["Source"] & {
-      /**
-       * Format: int64
-       * @example 1
-       */
-      id: number;
+      /** @example 1 */
+      id: string;
       /**
        * Format: uuid
        * @example 57e60f90-8c0c-4bd1-87a0-2143759aae1d
@@ -2619,6 +2626,12 @@ export interface components {
        *     }
        */
       additional_context?: Record<string, never>;
+      /**
+       * Format: date-time
+       * @description Timestamp of when the provider was created.
+       * @example 2026-01-15 12:30:00
+       */
+      created_timestamp?: string | null;
     };
     SourcePagination: components["schemas"]["ListPagination"] & {
       data: components["schemas"]["SourceOut"][];
@@ -6639,7 +6652,7 @@ export interface operations {
       header?: never;
       path: {
         /** @description ID of source to get */
-        source_id: number;
+        source_id: string;
       };
       cookie?: never;
     };
@@ -7491,7 +7504,7 @@ export interface operations {
       header?: never;
       path: {
         /** @description ID of source to get */
-        source_id: number;
+        source_id: string;
       };
       cookie?: never;
     };
@@ -7539,7 +7552,7 @@ export interface operations {
       header?: never;
       path: {
         /** @description ID of source to get */
-        source_id: number;
+        source_id: string;
       };
       cookie?: never;
     };
